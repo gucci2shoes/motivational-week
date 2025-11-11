@@ -28,8 +28,8 @@
       title: '2025-11-11',
       videoUrl: 'https://www.youtube.com/watch?v=P04IYEOIr38',
       quote: {
-        text: 'The secret of getting ahead is getting started.',
-        attribution: 'Mark Twain'
+        text: 'You must always have faith in people. And, most importantly, you must always have faith in yourself.',
+        attribution: 'Elle Woods'
       },
       treat: {
         type: 'embed',
