@@ -3,7 +3,7 @@
 
   const CONFIG = {
     title: 'Trip Surprises · 5 Days',
-    devMode: true,
+    devMode: false,
     cacheVersion: '202407150001',
     passwordHashHex: '7997990d5e281fc7d53c474a269e8da29d7866a12cc5fe702efaf68d2a8bf354',
     timeZone: 'America/New_York',
@@ -159,7 +159,7 @@
     }
   };
 
-  const offsetFormatter = new Intl.DateTimeFormat('en-US', {
+  const tzFormatter = new Intl.DateTimeFormat('en-US', {
     timeZone: CONFIG.timeZone,
     hour12: false,
     year: 'numeric',
@@ -167,8 +167,7 @@
     day: '2-digit',
     hour: '2-digit',
     minute: '2-digit',
-    second: '2-digit',
-    timeZoneName: 'shortOffset'
+    second: '2-digit'
   });
 
   const unlockLabelFormatter = new Intl.DateTimeFormat('en-US', {
@@ -181,34 +180,40 @@
     hour12: true
   });
 
-  const offsetCache = new Map();
+  const unlockCache = new Map();
 
-  const getOffsetMinutes = (dateISO) => {
-    if (offsetCache.has(dateISO)) {
-      return offsetCache.get(dateISO);
-    }
-    const [year, month, day] = dateISO.split('-').map(Number);
-    const sample = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
-    const parts = offsetFormatter.formatToParts(sample);
-    const tzPart = parts.find((part) => part.type === 'timeZoneName');
-    let minutes = -300;
-    if (tzPart) {
-      const match = tzPart.value.match(/GMT([+-]\d{1,2})(?::(\d{2}))?/);
-      if (match) {
-        const hoursComponent = Number(match[1]);
-        const minuteComponent = Number(match[2] || '0');
-        const minuteSign = hoursComponent === 0 ? 1 : Math.sign(hoursComponent);
-        minutes = hoursComponent * 60 + minuteSign * minuteComponent;
+  const extractTzParts = (date) => {
+    const parts = tzFormatter.formatToParts(date);
+    const map = {};
+    parts.forEach(({ type, value }) => {
+      if (type !== 'literal') {
+        map[type] = value;
       }
-    }
-    offsetCache.set(dateISO, minutes);
-    return minutes;
+    });
+    return map;
+  };
+
+  const computeUnlockTimestamp = (dateISO) => {
+    const [year, month, day] = dateISO.split('-').map(Number);
+    const anchor = new Date(Date.UTC(year, month - 1, day, 0, 0, 0));
+    const map = extractTzParts(anchor);
+    const asUTC = Date.UTC(
+      Number(map.year),
+      Number(map.month) - 1,
+      Number(map.day),
+      Number(map.hour),
+      Number(map.minute),
+      Number(map.second)
+    );
+    const offsetMinutes = (asUTC - anchor.getTime()) / 60000;
+    return anchor.getTime() - offsetMinutes * 60000;
   };
 
   const getUnlockTimestamp = (dateISO) => {
-    const [year, month, day] = dateISO.split('-').map(Number);
-    const utcMidnight = Date.UTC(year, month - 1, day, 0, 0, 0);
-    return utcMidnight - getOffsetMinutes(dateISO) * 60000;
+    if (!unlockCache.has(dateISO)) {
+      unlockCache.set(dateISO, computeUnlockTimestamp(dateISO));
+    }
+    return unlockCache.get(dateISO);
   };
 
   const bonusUnlockTimestamp = () => getUnlockTimestamp(CONFIG.bonusUnlockDate);
