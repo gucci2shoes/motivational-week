@@ -25,7 +25,7 @@
       id: 1,
       routeHash: '#day1',
       dateISO: '2025-11-11',
-      title: 'Kickoff',
+      title: '2025-11-11',
       videoUrl: 'https://www.youtube.com/watch?v=P04IYEOIr38',
       quote: {
         text: 'The secret of getting ahead is getting started.',
@@ -45,7 +45,7 @@
       id: 2,
       routeHash: '#day2',
       dateISO: '2025-11-12',
-      title: 'Mid-stride',
+      title: '2025-11-12',
       videoUrl: withCache('day2.mp4'),
       quote: {
         text: 'We are what we repeatedly do. Excellence, then, is not an act but a habit.',
@@ -65,7 +65,7 @@
       id: 3,
       routeHash: '#day3',
       dateISO: '2025-11-13',
-      title: 'Big Push',
+      title: '2025-11-13',
       videoUrl: withCache('day3.mp4'),
       quote: {
         text: 'Fortune favors the bold.',
@@ -85,7 +85,7 @@
       id: 4,
       routeHash: '#day4',
       dateISO: '2025-11-14',
-      title: 'People & Gratitude',
+      title: '2025-11-14',
       videoUrl: withCache('day4.mp4'),
       quote: {
         text: 'Let gratitude be the pillow upon which you kneel to say your nightly prayer.',
@@ -105,7 +105,7 @@
       id: 5,
       routeHash: '#day5',
       dateISO: '2025-11-15',
-      title: 'Home Stretch',
+      title: '2025-11-15',
       videoUrl: withCache('day5.mp4'),
       quote: {
         text: 'What you do today can improve all your tomorrows.',
