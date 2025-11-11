@@ -611,9 +611,11 @@
     const hero = document.createElement('header');
     hero.className = 'hero';
     hero.innerHTML = `
-      <p class="eyebrow">Trip Surprises</p>
-      <h1>${CONFIG.title}</h1>
-      <p>Five days of potentially motivational (but hopefully at least make you smile) things.</p>
+      <div class="hero-glass">
+        <p class="eyebrow">Trip Surprises</p>
+        <h1>${CONFIG.title}</h1>
+        <p>Five days of potentially motivational (but hopefully at least make you smile) things.</p>
+      </div>
     `;
 
     view.appendChild(hero);
