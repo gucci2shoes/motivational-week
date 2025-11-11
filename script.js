@@ -34,7 +34,7 @@
       treat: {
         type: 'embed',
         payload: '<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/track/5BkNCuxzzid0gz9sx3NNbX?utm_source=generator\" width=\"100%\" height=\"352\" frameborder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>',
-        label: 'Motivation track'
+        label: 'Motivational track'
       },
       cta: {
         label: 'Pack your day bag',
