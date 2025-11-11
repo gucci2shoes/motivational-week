@@ -235,6 +235,12 @@ body {
   color: #718096;
 }
 
+.treat-embed iframe {
+  width: 100%;
+  border: none;
+  min-height: 300px;
+}
+
 .locked-block {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 1rem;
