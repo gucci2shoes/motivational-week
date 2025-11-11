@@ -613,7 +613,7 @@
     hero.innerHTML = `
       <p class="eyebrow">Trip Surprises</p>
       <h1>${CONFIG.title}</h1>
-      <p>Five days of unlockable surprises with countdowns and cozy treats.</p>
+      <p>Five days of potentially motivational (but hopefully at least make you smile) things.</p>
     `;
 
     view.appendChild(hero);
