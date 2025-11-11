@@ -35,10 +35,6 @@
         type: 'embed',
         payload: '<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/track/5BkNCuxzzid0gz9sx3NNbX?utm_source=generator\" width=\"100%\" height=\"352\" frameborder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>',
         label: 'Motivational track'
-      },
-      cta: {
-        label: 'Pack your day bag',
-        href: 'https://example.com/kickoff-checklist'
       }
     },
     {
@@ -66,10 +62,6 @@
         type: 'code',
         payload: 'LUNCH-1313',
         label: 'Lunch pickup code'
-      },
-      cta: {
-        label: 'Check the pickup spot',
-        href: 'https://example.com/lunch-plan'
       }
     },
     {
@@ -86,10 +78,6 @@
         type: 'link',
         payload: withCache('montage.mp4'),
         label: 'Mini montage'
-      },
-      cta: {
-        label: 'Watch the gratitude montage',
-        href: withCache('montage.mp4')
       }
     },
     {
@@ -105,10 +93,6 @@
       treat: {
         type: 'note',
         payload: 'Finish this day and the bonus surprise unlocks automatically.'
-      },
-      cta: {
-        label: 'Go claim the bonus',
-        href: '#bonus'
       }
     }
   ];
