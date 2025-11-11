@@ -1,0 +1,304 @@
+:root {
+  color-scheme: dark;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #050608;
+  color: #f5f6f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, rgba(92, 69, 255, 0.2), transparent 55%), #050608;
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  position: relative;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.dev-badge {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #f97316;
+  color: #050608;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  z-index: 10;
+}
+
+.view {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  color: #a1a4ff;
+  margin: 0 0 0.5rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.hero p {
+  margin: 0;
+  color: #d7dae5;
+}
+
+.card {
+  background: rgba(15, 16, 31, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 10px 40px rgba(3, 6, 23, 0.45);
+}
+
+.day-card.locked {
+  opacity: 0.75;
+}
+
+.day-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 1rem;
+  gap: 0.5rem;
+}
+
+.day-heading strong {
+  font-size: 1.1rem;
+}
+
+.day-heading span {
+  color: #9da2b8;
+}
+
+.day-status {
+  margin: 0.35rem 0 0.75rem;
+  color: #c2c6dd;
+  font-size: 0.9rem;
+}
+
+.day-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(130deg, #6366f1, #a855f7);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f5f6f7;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.unlock-copy {
+  margin: 0.25rem 0 0.5rem;
+  color: #c5cae9;
+  font-size: 0.85rem;
+}
+
+.countdown {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 1rem;
+  color: #ffd166;
+}
+
+.progress-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.progress-label {
+  font-size: 0.9rem;
+  color: #c7cbe2;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(130deg, #34d399, #10b981);
+}
+
+.time-note {
+  font-size: 0.85rem;
+  color: #8d92ad;
+  text-align: center;
+}
+
+.back-link {
+  color: #9fa5ff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.day-detail video,
+.bonus-detail video,
+.video-embed {
+  width: 100%;
+  border-radius: 0.75rem;
+  margin: 1rem 0;
+  background: #000;
+}
+
+.quote {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  color: #e8e9f4;
+}
+
+.quote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #b5bad9;
+}
+
+.treat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.treat-code {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+}
+
+.treat-code:not(.revealed) {
+  color: #718096;
+}
+
+.locked-block {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bonus-card {
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 6, 8, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1.5rem;
+}
+
+.auth-card {
+  width: min(360px, 100%);
+  background: rgba(15, 16, 31, 0.95);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.auth-card h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.auth-card input {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(5, 6, 8, 0.6);
+  color: #f5f6f7;
+}
+
+.auth-card button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem;
+  font-weight: 600;
+  background: linear-gradient(120deg, #34d399, #10b981);
+  color: #050608;
+  cursor: pointer;
+}
+
+.auth-error {
+  min-height: 1.25rem;
+  color: #f87171;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .day-list {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .hero {
+    text-align: left;
+  }
+}
