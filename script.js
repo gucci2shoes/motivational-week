@@ -46,19 +46,10 @@
       routeHash: '#day2',
       dateISO: '2025-11-12',
       title: '2025-11-12',
-      videoUrl: withCache('day2.mp4'),
+      videoUrl: 'https://www.youtube.com/watch?v=0jxVnlRdelU',
       quote: {
         text: 'We are what we repeatedly do. Excellence, then, is not an act but a habit.',
         attribution: 'Will Durant'
-      },
-      treat: {
-        type: 'link',
-        payload: 'https://example.com/mid-week-playlist',
-        label: 'Your mid-week playlist'
-      },
-      cta: {
-        label: 'Play the soundtrack',
-        href: 'https://example.com/mid-week-playlist'
       }
     },
     {
