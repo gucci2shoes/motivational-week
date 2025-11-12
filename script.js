@@ -6,7 +6,7 @@
     devMode: false,
     cacheVersion: '202407150001',
     passwordHashHex: '7997990d5e281fc7d53c474a269e8da29d7866a12cc5fe702efaf68d2a8bf354',
-    timeZone: 'America/New_York',
+    timeZone: 'America/Los_Angeles',
     bonusUnlockDate: '2025-11-15'
   };
 
