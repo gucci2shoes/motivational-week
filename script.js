@@ -115,7 +115,9 @@
     'collage/RBG1.jpg',
     'collage/Ruth_Bader_Ginsburg_2016_portrait.jpg',
     'collage/images.jpeg',
-    'collage/legally_blonde_-_h_-_2016.jpeg'
+    'collage/legally_blonde_-_h_-_2016.jpeg',
+    'collage/Notorious-RBG-book-cover-illustration.jpg',
+    'collage/Thurgood-marshall-2.jpg'
   ];
 
   const TOTAL_DAYS = days.length;
