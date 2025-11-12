@@ -216,6 +216,12 @@ body {
   color: #b5bad9;
 }
 
+.quote-extra {
+  margin-top: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 2px dashed rgba(255, 255, 255, 0.2);
+}
+
 .treat {
   display: flex;
   flex-direction: column;

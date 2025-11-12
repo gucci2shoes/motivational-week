@@ -48,7 +48,11 @@
       videoUrl: 'https://www.youtube.com/watch?v=0jxVnlRdelU',
       quote: {
         text: 'We are what we repeatedly do. Excellence, then, is not an act but a habit.',
-        attribution: 'Will Durant'
+        attribution: 'Will Durant',
+        extra: {
+          text: 'You are excellence',
+          attribution: 'Guz Reister'
+        }
       }
     },
     {
@@ -636,6 +640,15 @@
     block.className = 'quote';
     const cite = day.quote.attribution ? `<cite>— ${day.quote.attribution}</cite>` : '';
     block.innerHTML = `<p>“${day.quote.text}”</p>${cite}`;
+
+    if (day.quote.extra) {
+      const extra = document.createElement('div');
+      extra.className = 'quote-extra';
+      const extraCite = day.quote.extra.attribution ? `<cite>— ${day.quote.extra.attribution}</cite>` : '';
+      extra.innerHTML = `<p>“${day.quote.extra.text}”</p>${extraCite}`;
+      block.appendChild(extra);
+    }
+
     return block;
   };
 
