@@ -649,6 +649,18 @@
     title.textContent = day.treat.label || 'Treat';
     wrapper.appendChild(title);
 
+    let noteAppended = false;
+    const appendNote = () => {
+      if (noteAppended || !day.treat?.note) {
+        return;
+      }
+      const note = document.createElement('p');
+      note.className = 'treat-note';
+      note.textContent = day.treat.note;
+      wrapper.appendChild(note);
+      noteAppended = true;
+    };
+
     if (day.treat.type === 'code') {
       const revealed = isTreatRevealed(day.id);
       const code = document.createElement('div');
@@ -680,6 +692,7 @@
       link.textContent = day.treat.label || 'Open treat';
       wrapper.appendChild(link);
     } else if (day.treat.type === 'embed') {
+      appendNote();
       const embed = document.createElement('div');
       embed.className = 'treat-embed';
       embed.innerHTML = day.treat.payload;
@@ -690,12 +703,7 @@
       wrapper.appendChild(note);
     }
 
-    if (day.treat.note) {
-      const note = document.createElement('p');
-      note.className = 'treat-note';
-      note.textContent = day.treat.note;
-      wrapper.appendChild(note);
-    }
+    appendNote();
 
     return wrapper;
   };
