@@ -241,6 +241,13 @@ body {
   min-height: 300px;
 }
 
+.treat-note {
+  margin: 0.25rem 0 0;
+  color: #d4d6eb;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
 .locked-block {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 1rem;

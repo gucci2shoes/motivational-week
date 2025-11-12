@@ -33,8 +33,11 @@
       },
       treat: {
         type: 'embed',
-        payload: '<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/track/5BkNCuxzzid0gz9sx3NNbX?utm_source=generator\" width=\"100%\" height=\"352\" frameborder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>',
-        label: 'Motivational track'
+        payload:
+          '<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/track/5BkNCuxzzid0gz9sx3NNbX?utm_source=generator\" width=\"100%\" height=\"352\" frameborder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>',
+        label: 'Motivational track',
+        note:
+          \"Idk why, but I feel like this is motivational and made me think of you when it came up on shuffle today... \\\"I won't take the easy road\\\"... \\\"Keep on keepin' on\\\"... Keep on keepin' on honey, I'm so proud of you.\"
       }
     },
     {
@@ -682,6 +685,13 @@
     } else {
       const note = document.createElement('p');
       note.textContent = day.treat.payload;
+      wrapper.appendChild(note);
+    }
+
+    if (day.treat.note) {
+      const note = document.createElement('p');
+      note.className = 'treat-note';
+      note.textContent = day.treat.note;
       wrapper.appendChild(note);
     }
 
