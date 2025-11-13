@@ -63,6 +63,8 @@
       title: '2025-11-13',
       unlockTime: '12:00',
       videoUrl: withCache('day3.mp4'),
+      videoNote:
+        'For today, I thought you might like to be able to check on Kitty while you&apos;re gone, so I set up the bird buddy inside :). Here&apos;s the first video, and if you want to check in on her live, you can <a href="https://mybirdbuddy.com/my-account/" target="_blank" rel="noreferrer">login to Bird Buddy online</a> or download the Bird Buddy app, just text me and I&apos;ll share the password there so that it isn&apos;t published online. I love you!',
       quote: {
         text: 'Never give in, never give in, never, never, never, never—in nothing, great or small, large or petty—never give in except to convictions of honor and good sense.',
         attribution: 'Winston Churchill'
@@ -770,6 +772,13 @@
     const title = document.createElement('h2');
     title.textContent = `Day ${day.id} · ${day.title}`;
     card.appendChild(title);
+
+    if (day.videoNote) {
+      const videoNote = document.createElement('p');
+      videoNote.className = 'video-note';
+      videoNote.innerHTML = day.videoNote;
+      card.appendChild(videoNote);
+    }
 
     let media;
     if (isYouTubeUrl(day.videoUrl)) {
