@@ -3,7 +3,7 @@
 
   const CONFIG = {
     title: 'Trip Surprises · 5 Days',
-    devMode: false,
+    devMode: true,
     cacheVersion: '202407150001',
     passwordHashHex: '7997990d5e281fc7d53c474a269e8da29d7866a12cc5fe702efaf68d2a8bf354',
     timeZone: 'America/Los_Angeles',
@@ -17,6 +17,7 @@
   };
 
   const ROUTES = ['#', '#day1', '#day2', '#day3', '#day4', '#day5', '#bonus'];
+  const DEFAULT_UNLOCK_TIME = '00:00';
 
   const withCache = (asset) => `assets/${asset}?v=${CONFIG.cacheVersion}`;
 
@@ -60,6 +61,7 @@
       routeHash: '#day3',
       dateISO: '2025-11-13',
       title: '2025-11-13',
+      unlockTime: '12:00',
       videoUrl: withCache('day3.mp4'),
       quote: {
         text: 'Fortune favors the bold.',
@@ -126,6 +128,7 @@
 
   const TOTAL_DAYS = days.length;
   const dayByRoute = new Map(days.map((day) => [day.routeHash, day]));
+  const dayUnlockTimes = new Map(days.map((day) => [day.dateISO, day.unlockTime || DEFAULT_UNLOCK_TIME]));
 
   const isYouTubeUrl = (url) => /(?:youtu\.be|youtube\.com)/i.test(url);
 
@@ -164,7 +167,14 @@
     hour12: true
   });
 
+  const zoneLabel =
+    CONFIG.timeZone === 'America/Los_Angeles'
+      ? 'LA'
+      : CONFIG.timeZone.split('/')[1]?.replace('_', ' ') || CONFIG.timeZone;
+
   const unlockCache = new Map();
+
+  const resolveUnlockTime = (dateISO) => dayUnlockTimes.get(dateISO) || DEFAULT_UNLOCK_TIME;
 
   const extractTzParts = (date) => {
     const parts = tzFormatter.formatToParts(date);
@@ -177,9 +187,10 @@
     return map;
   };
 
-  const computeUnlockTimestamp = (dateISO) => {
+  const computeUnlockTimestamp = (dateISO, timeStr = DEFAULT_UNLOCK_TIME) => {
     const [year, month, day] = dateISO.split('-').map(Number);
-    const anchor = new Date(Date.UTC(year, month - 1, day, 0, 0, 0));
+    const [hourStr = '00', minuteStr = '00'] = timeStr.split(':');
+    const anchor = new Date(Date.UTC(year, month - 1, day, Number(hourStr), Number(minuteStr), 0));
     const map = extractTzParts(anchor);
     const asUTC = Date.UTC(
       Number(map.year),
@@ -193,20 +204,23 @@
     return anchor.getTime() - offsetMinutes * 60000;
   };
 
-  const getUnlockTimestamp = (dateISO) => {
-    if (!unlockCache.has(dateISO)) {
-      unlockCache.set(dateISO, computeUnlockTimestamp(dateISO));
+  const getUnlockTimestamp = (dateISO, timeStr) => {
+    const resolvedTime = timeStr || resolveUnlockTime(dateISO);
+    const key = `${dateISO}|${resolvedTime}`;
+    if (!unlockCache.has(key)) {
+      unlockCache.set(key, computeUnlockTimestamp(dateISO, resolvedTime));
     }
-    return unlockCache.get(dateISO);
+    return unlockCache.get(key);
   };
 
-  const bonusUnlockTimestamp = () => getUnlockTimestamp(CONFIG.bonusUnlockDate);
+  const bonusUnlockTimestamp = () => getUnlockTimestamp(CONFIG.bonusUnlockDate, DEFAULT_UNLOCK_TIME);
 
   const isUnlocked = (dateISO) => CONFIG.devMode || Date.now() >= getUnlockTimestamp(dateISO);
 
   const shouldUnlockBonusByDate = () => CONFIG.devMode || Date.now() >= bonusUnlockTimestamp();
 
-  const formatUnlockLabel = (dateISO) => `${unlockLabelFormatter.format(new Date(getUnlockTimestamp(dateISO)))} (NY)`;
+  const formatUnlockLabel = (dateISO) =>
+    `${unlockLabelFormatter.format(new Date(getUnlockTimestamp(dateISO)))} (${zoneLabel})`;
 
   const formatCountdown = (targetMs) => {
     const diff = targetMs - Date.now();
@@ -493,7 +507,7 @@
   const renderTimesNote = () => {
     const note = document.createElement('p');
     note.className = 'time-note';
-    note.textContent = 'Times are based on New York time.';
+    note.textContent = 'Times are based on Los Angeles time.';
     return note;
   };
 
