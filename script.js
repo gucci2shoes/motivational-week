@@ -63,8 +63,7 @@
       title: '2025-11-13',
       unlockTime: '12:00',
       videoUrl: withCache('day3.mp4'),
-      videoNote:
-        'For today, I thought you might like to be able to check on Kitty while you're gone, so I set up the bird buddy inside :). Here's <a href="https://app.mybirdbuddy.com/media/san-diego-united-states/27ed5203-81b1-4ede-b2e8-0cc59039c7b5" target="_blank" rel="noreferrer">the first video</a> (it identified her as a squirrel), and if you want to check in on her live, you can download the Bird Buddy app, just text me and I'll share the password there so that it isn't published online. I love you!',
+      videoNote: `For today, I thought you might like to be able to check on Kitty while you're gone, so I set up the bird buddy inside :). Here's <a href="https://app.mybirdbuddy.com/media/san-diego-united-states/27ed5203-81b1-4ede-b2e8-0cc59039c7b5" target="_blank" rel="noreferrer">the first video</a> (it identified her as a squirrel), and if you want to check in on her live, you can download the Bird Buddy app, just text me and I'll share the password there so that it isn't published online. I love you!`,
       quote: {
         text: 'Never give in, never give in, never, never, never, never—in nothing, great or small, large or petty—never give in except to convictions of honor and good sense.',
         attribution: 'Winston Churchill'
