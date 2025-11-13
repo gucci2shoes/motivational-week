@@ -64,8 +64,8 @@
       unlockTime: '12:00',
       videoUrl: withCache('day3.mp4'),
       quote: {
-        text: 'Fortune favors the bold.',
-        attribution: 'Terence'
+        text: 'Never give in, never give in, never, never, never, never—in nothing, great or small, large or petty—never give in except to convictions of honor and good sense.',
+        attribution: 'Winston Churchill'
       },
       treat: {
         type: 'code',
