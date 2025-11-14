@@ -82,7 +82,8 @@
       treat: {
         type: 'link',
         payload: withCache('montage.mp4'),
-        label: 'Mini montage'
+        label: 'Mini montage',
+        unlockTime: '12:00'
       }
     },
     {
@@ -215,8 +216,8 @@
 
   const shouldUnlockBonusByDate = () => CONFIG.devMode || Date.now() >= bonusUnlockTimestamp();
 
-  const formatUnlockLabel = (dateISO) =>
-    `${unlockLabelFormatter.format(new Date(getUnlockTimestamp(dateISO)))} (${zoneLabel})`;
+  const formatUnlockLabel = (dateISO, timeStr) =>
+    `${unlockLabelFormatter.format(new Date(getUnlockTimestamp(dateISO, timeStr)))} (${zoneLabel})`;
 
   const formatCountdown = (targetMs) => {
     const diff = targetMs - Date.now();
@@ -672,6 +673,10 @@
     title.textContent = day.treat.label || 'Treat';
     wrapper.appendChild(title);
 
+    const treatUnlockTime = day.treat.unlockTime;
+    const treatUnlockTimestamp =
+      treatUnlockTime && !CONFIG.devMode ? getUnlockTimestamp(day.dateISO, treatUnlockTime) : null;
+
     let noteAppended = false;
     const appendNote = () => {
       if (noteAppended || !day.treat?.note) {
@@ -683,6 +688,17 @@
       wrapper.appendChild(note);
       noteAppended = true;
     };
+
+    if (treatUnlockTimestamp && Date.now() < treatUnlockTimestamp) {
+      const locked = document.createElement('div');
+      locked.className = 'locked-block';
+      const label = document.createElement('p');
+      label.textContent = `Treat unlocks at ${formatUnlockLabel(day.dateISO, treatUnlockTime)}.`;
+      locked.appendChild(label);
+      locked.appendChild(makeCountdown(treatUnlockTimestamp));
+      wrapper.appendChild(locked);
+      return wrapper;
+    }
 
     if (day.treat.type === 'code') {
       const revealed = isTreatRevealed(day.id);
