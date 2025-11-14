@@ -74,6 +74,7 @@
       routeHash: '#day4',
       dateISO: '2025-11-14',
       title: '2025-11-14',
+      unlockTime: '12:00',
       videoUrl: withCache('day4.mp4'),
       quote: {
         text: 'Let gratitude be the pillow upon which you kneel to say your nightly prayer.',
