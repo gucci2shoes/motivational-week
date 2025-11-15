@@ -90,15 +90,6 @@
       videoNote: `You made it through! I'm so proud of you! I know it has to have been an insane week, both emotionally and in volume of work. Kitty and I are ready for you to be home. It's actually supposed to rain this weekend, so will be perfect for hanging out inside and decompressing. We can go to Home Depot this weekend so you can pick christmas lights, and I'll get them up before Thanksgiving (also check out <a href="https://www.airbnb.com/rooms/684118833743537924?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&location=Condesa%2C%20Mexico%20City%2C%20Mexico%20City%2C%20Mexico&search_mode=regular_search&amenities%5B%5D=25&source_impression_id=p3_1763243851_P3lDGpqd9coYOXxE&previous_page_section_name=1001&federated_search_id=e19e8127-6cf8-466b-b684-90c96685550d&modal=PHOTO_TOUR_SCROLLABLE" target="_blank" rel="noreferrer">the below</a> to get excited for Mexico City).`,
       imageUrl: withCache('day5.jpeg'),
       imageNote: `I wanted to make sure we had one booked, but there's plenty of other options, so we can look through them when you're back :)<ul><li><a href="https://www.airbnb.com/rooms/1519793341286394942?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&search_mode=regular_search&source_impression_id=p3_1763243137_P3i_2MEBYQuNPgBR&previous_page_section_name=1000&federated_search_id=f54b973d-6171-494e-8cec-9cd34eaeebf2" target="_blank" rel="noreferrer">Option 1</a></li><li><a href="https://www.airbnb.com/rooms/1526804487140175493?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&search_mode=regular_search&amenities%5B%5D=7&source_impression_id=p3_1763243544_P3rWGDg8MMEn8Hzw&previous_page_section_name=1000&federated_search_id=eccab49e-b36d-48a5-a9b1-01b29600dbbc" target="_blank" rel="noreferrer">Option 2</a></li><li><a href="https://www.airbnb.com/rooms/1268885971618736756?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&search_mode=regular_search&amenities%5B%5D=25&source_impression_id=p3_1763242674_P3u8oLVYlKDKNLyO&previous_page_section_name=1000&federated_search_id=3eaafac4-d1f3-4fac-8e09-9bb27bf0a7a2" target="_blank" rel="noreferrer">Option 3</a></li><li><a href="https://www.airbnb.com/rooms/1236352600428185071?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&search_mode=regular_search&source_impression_id=p3_1763242358_P3oWxQxqUlyWPTV6&previous_page_section_name=1000&federated_search_id=a1e5e733-39f5-4f8f-ac60-020b774840de" target="_blank" rel="noreferrer">Option 4</a></li><li>And there's many more</li></ul>`,
-      videoUrl: withCache('day5.mp4'),
-      quote: {
-        text: 'What you do today can improve all your tomorrows.',
-        attribution: 'Ralph Marston'
-      },
-      treat: {
-        type: 'note',
-        payload: 'Finish this day and the bonus surprise unlocks automatically.'
-      }
     }
   ];
 
