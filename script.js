@@ -76,16 +76,11 @@
       title: '2025-11-14',
       unlockTime: '12:00',
       videoUrl: withCache('day4.mp4'),
+      videoNote: `Today's the big day. You've put your all into this and I'm so proud of how hard you've worked for Gary. I know it's nerve-racking, but I know you're going to do great. Hopefully this makes you smile, we love you so much, and we can't wait for you to get home.`,
       quote: {
         text: 'Where you see wrong or inequality or injustice, speak out, because this is your country. This is your democracy.',
         attribution: 'Thurgood Marshall'
       },
-      treat: {
-        type: 'link',
-        payload: withCache('montage.mp4'),
-        label: 'Mini montage',
-        unlockTime: '12:00'
-      }
     },
     {
       id: 5,
