@@ -16,7 +16,7 @@
     revealPrefix: 'ts5_reveal_day_'
   };
 
-  const ROUTES = ['#', '#day1', '#day2', '#day3', '#day4', '#day5', '#bonus'];
+  const ROUTES = ['#', '#day1', '#day2', '#day3', '#day4', '#day5'];
   const DEFAULT_UNLOCK_TIME = '12:00';
 
   const withCache = (asset) => `assets/${asset}?v=${CONFIG.cacheVersion}`;
@@ -87,6 +87,9 @@
       routeHash: '#day5',
       dateISO: '2025-11-15',
       title: '2025-11-15',
+      videoNote: `You made it through! I'm so proud of you! I know it has to have been an insane week, both emotionally and in volume of work. Kitty and I are ready for you to be home. It's actually supposed to rain this weekend, so will be perfect for hanging out inside and decompressing. We can go to Home Depot this weekend so you can pick christmas lights, and I'll get them up before Thanksgiving (also check out <a href="https://www.airbnb.com/rooms/684118833743537924?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&location=Condesa%2C%20Mexico%20City%2C%20Mexico%20City%2C%20Mexico&search_mode=regular_search&amenities%5B%5D=25&source_impression_id=p3_1763243851_P3lDGpqd9coYOXxE&previous_page_section_name=1001&federated_search_id=e19e8127-6cf8-466b-b684-90c96685550d&modal=PHOTO_TOUR_SCROLLABLE" target="_blank" rel="noreferrer">the below</a> to get excited for Mexico City).`,
+      imageUrl: withCache('day5.jpeg'),
+      imageNote: `I wanted to make sure we had one booked, but there's plenty of other options, so we can look through them when you're back :)<ul><li><a href="https://www.airbnb.com/rooms/1519793341286394942?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&search_mode=regular_search&source_impression_id=p3_1763243137_P3i_2MEBYQuNPgBR&previous_page_section_name=1000&federated_search_id=f54b973d-6171-494e-8cec-9cd34eaeebf2" target="_blank" rel="noreferrer">Option 1</a></li><li><a href="https://www.airbnb.com/rooms/1526804487140175493?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&search_mode=regular_search&amenities%5B%5D=7&source_impression_id=p3_1763243544_P3rWGDg8MMEn8Hzw&previous_page_section_name=1000&federated_search_id=eccab49e-b36d-48a5-a9b1-01b29600dbbc" target="_blank" rel="noreferrer">Option 2</a></li><li><a href="https://www.airbnb.com/rooms/1268885971618736756?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&search_mode=regular_search&amenities%5B%5D=25&source_impression_id=p3_1763242674_P3u8oLVYlKDKNLyO&previous_page_section_name=1000&federated_search_id=3eaafac4-d1f3-4fac-8e09-9bb27bf0a7a2" target="_blank" rel="noreferrer">Option 3</a></li><li><a href="https://www.airbnb.com/rooms/1236352600428185071?adults=2&check_in=2025-11-27&check_out=2025-11-30&guests=2&search_mode=regular_search&source_impression_id=p3_1763242358_P3oWxQxqUlyWPTV6&previous_page_section_name=1000&federated_search_id=a1e5e733-39f5-4f8f-ac60-020b774840de" target="_blank" rel="noreferrer">Option 4</a></li><li>And there's many more</li></ul>`,
       videoUrl: withCache('day5.mp4'),
       quote: {
         text: 'What you do today can improve all your tomorrows.',
@@ -98,14 +101,6 @@
       }
     }
   ];
-
-  const bonusContent = {
-    title: 'Bonus Surprise',
-    message:
-      'You made it through all five days! Here is a little extra spark to carry along the rest of the trip.',
-    linkLabel: 'Open the finale gift',
-    linkHref: 'https://example.com/finale-gift'
-  };
 
 
   const collageSources = [
@@ -206,11 +201,7 @@
     return unlockCache.get(key);
   };
 
-  const bonusUnlockTimestamp = () => getUnlockTimestamp(CONFIG.bonusUnlockDate, DEFAULT_UNLOCK_TIME);
-
   const isUnlocked = (dateISO) => CONFIG.devMode || Date.now() >= getUnlockTimestamp(dateISO);
-
-  const shouldUnlockBonusByDate = () => CONFIG.devMode || Date.now() >= bonusUnlockTimestamp();
 
   const formatUnlockLabel = (dateISO, timeStr) =>
     `${unlockLabelFormatter.format(new Date(getUnlockTimestamp(dateISO, timeStr)))} (${zoneLabel})`;
@@ -563,38 +554,6 @@
     return card;
   };
 
-  const isBonusUnlocked = () =>
-    CONFIG.devMode || hasViewedDay(5) || shouldUnlockBonusByDate();
-
-  const buildBonusCard = () => {
-    const unlocked = isBonusUnlocked();
-    const card = document.createElement('article');
-    card.className = `card bonus-card ${unlocked ? 'unlocked' : 'locked'}`;
-
-    const heading = document.createElement('div');
-    heading.className = 'day-heading';
-    heading.innerHTML = '<strong>Bonus</strong><span>Final Surprise</span>';
-    card.appendChild(heading);
-
-    if (unlocked) {
-      const action = document.createElement('a');
-      action.href = '#bonus';
-      action.className = 'btn btn-primary';
-      action.textContent = 'Open bonus';
-      card.appendChild(action);
-    } else {
-      const copy = document.createElement('p');
-      copy.className = 'unlock-copy';
-      copy.textContent = 'Unlocks after Day 5 is viewed or on Nov 15 (NY).';
-      card.appendChild(copy);
-      if (!CONFIG.devMode && !shouldUnlockBonusByDate()) {
-        card.appendChild(makeCountdown(bonusUnlockTimestamp()));
-      }
-    }
-
-    return card;
-  };
-
   const renderHome = () => {
     const view = document.createElement('section');
     view.className = 'view home-view';
@@ -617,7 +576,6 @@
     days.forEach((day) => list.appendChild(buildDayCard(day)));
     view.appendChild(list);
 
-    view.appendChild(buildBonusCard());
     view.appendChild(renderTimesNote());
     return view;
   };
@@ -804,6 +762,22 @@
     }
     card.appendChild(media);
 
+    if (day.imageUrl) {
+      const image = document.createElement('img');
+      image.src = day.imageUrl;
+      image.alt = day.imageAlt || `Day ${day.id} image`;
+      image.className = 'day-image';
+      image.loading = 'lazy';
+      card.appendChild(image);
+
+      if (day.imageNote) {
+        const imageNote = document.createElement('div');
+        imageNote.className = 'image-note';
+        imageNote.innerHTML = day.imageNote;
+        card.appendChild(imageNote);
+      }
+    }
+
     card.appendChild(buildQuote(day));
 
     const treat = renderTreat(day);
@@ -820,48 +794,9 @@
     return view;
   };
 
-  const renderBonusView = () => {
-    const view = document.createElement('section');
-    view.className = 'view bonus-view';
-    view.appendChild(buildBackLink());
-
-    if (!isBonusUnlocked()) {
-      const label = hasViewedDay(5)
-        ? 'Hang tight! Bonus unlocks momentarily.'
-        : 'Finish Day 5 or wait until Nov 15 (NY) to unlock the bonus.';
-      view.appendChild(buildLockedBlock(label, bonusUnlockTimestamp()));
-      return view;
-    }
-
-    const card = document.createElement('article');
-    card.className = 'card bonus-detail';
-
-    const title = document.createElement('h2');
-    title.textContent = bonusContent.title;
-    card.appendChild(title);
-
-    const body = document.createElement('p');
-    body.textContent = bonusContent.message;
-    card.appendChild(body);
-
-    const link = document.createElement('a');
-    link.href = bonusContent.linkHref;
-    link.className = 'btn btn-primary';
-    link.textContent = bonusContent.linkLabel;
-    link.target = '_blank';
-    link.rel = 'noreferrer';
-    card.appendChild(link);
-
-    view.appendChild(card);
-    return view;
-  };
-
   const getRouteTitle = (route) => {
     if (route === '#') {
       return CONFIG.title;
-    }
-    if (route === '#bonus') {
-      return `${CONFIG.title} · Bonus`;
     }
     const day = dayByRoute.get(route);
     return day ? `${CONFIG.title} · Day ${day.id}` : CONFIG.title;
@@ -881,8 +816,6 @@
     let view;
     if (route === '#') {
       view = renderHome();
-    } else if (route === '#bonus') {
-      view = renderBonusView();
     } else {
       const day = dayByRoute.get(route);
       view = day ? renderDayView(day) : renderHome();
