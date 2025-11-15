@@ -17,7 +17,7 @@
   };
 
   const ROUTES = ['#', '#day1', '#day2', '#day3', '#day4', '#day5', '#bonus'];
-  const DEFAULT_UNLOCK_TIME = '00:00';
+  const DEFAULT_UNLOCK_TIME = '12:00';
 
   const withCache = (asset) => `assets/${asset}?v=${CONFIG.cacheVersion}`;
 
@@ -505,7 +505,7 @@
   const renderTimesNote = () => {
     const note = document.createElement('p');
     note.className = 'time-note';
-    note.textContent = 'Times are based on Los Angeles time.';
+    note.textContent = 'Unlocks follow Los Angeles time (every day at noon).';
     return note;
   };
 
