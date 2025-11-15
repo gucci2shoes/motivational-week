@@ -77,8 +77,8 @@
       unlockTime: '12:00',
       videoUrl: withCache('day4.mp4'),
       quote: {
-        text: 'Let gratitude be the pillow upon which you kneel to say your nightly prayer.',
-        attribution: 'Maya Angelou'
+        text: 'Where you see wrong or inequality or injustice, speak out, because this is your country. This is your democracy.',
+        attribution: 'Thurgood Marshall'
       },
       treat: {
         type: 'link',
