@@ -592,6 +592,9 @@
   };
 
   const buildQuote = (day) => {
+    if (!day.quote) {
+      return null;
+    }
     const block = document.createElement('blockquote');
     block.className = 'quote';
     const cite = day.quote.attribution ? `<cite>— ${day.quote.attribution}</cite>` : '';
@@ -735,23 +738,25 @@
       card.appendChild(videoNote);
     }
 
-    let media;
-    if (isYouTubeUrl(day.videoUrl)) {
-      media = document.createElement('iframe');
-      media.src = toYouTubeEmbed(day.videoUrl);
-      media.className = 'video-embed';
-      media.width = '100%';
-      media.height = '360';
-      media.allow =
-        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      media.allowFullscreen = true;
-    } else {
-      media = document.createElement('video');
-      media.controls = true;
-      media.preload = 'metadata';
-      media.src = day.videoUrl;
+    if (day.videoUrl) {
+      let media;
+      if (isYouTubeUrl(day.videoUrl)) {
+        media = document.createElement('iframe');
+        media.src = toYouTubeEmbed(day.videoUrl);
+        media.className = 'video-embed';
+        media.width = '100%';
+        media.height = '360';
+        media.allow =
+          'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        media.allowFullscreen = true;
+      } else {
+        media = document.createElement('video');
+        media.controls = true;
+        media.preload = 'metadata';
+        media.src = day.videoUrl;
+      }
+      card.appendChild(media);
     }
-    card.appendChild(media);
 
     if (day.imageUrl) {
       const image = document.createElement('img');
@@ -769,7 +774,10 @@
       }
     }
 
-    card.appendChild(buildQuote(day));
+    const quote = buildQuote(day);
+    if (quote) {
+      card.appendChild(quote);
+    }
 
     const treat = renderTreat(day);
     if (treat) {
